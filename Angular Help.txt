@@ -1,0 +1,645 @@
+Angular is a front end technology works at server side.
+
+AngularJS 2009 is JavsScript Based
+Angular 2016 is typescript based object oriented version of JS.
+
+Browser understands Java Script but not Type Script
+
+Type Script should be converted into JS and 
+genderated JS should be used into HTML
+
+
+Angular    Features
+=====================================================
+1.Dependency Injection (Way of initializing dependencies)
+2.Two way data binding
+3.MVC
+4.Testing
+5.Modules,Directives,Filters,Services, Controllers 
+  (Components and Templates) etc....
+
+
+ What is module ?
+
+* Module is a container for services,directives,filter,modules
+
+         AngularJS (1.6)                           Angular (7.0)
+
+1. Not developed by keeping                       1.Developed specially for
+    mobile devlopment in mid.                        Mobile development
+
+2. Basic building block is                        2.Basic building block is
+    Java Script Function                             a TypeScript class
+
+3.Controllers                                    3.Components and templates
+
+4.filters    (format,sort,search)                 4.pipes
+
+5.services                                        5.providers
+
+6.directives                                     6.directive   
+        ng-if                                      *ngIf,*ngFor,*ngSwitchCase
+        ng-repeat                                  ngModel,ngClass ,ngStyle
+
+
+7.routing   (function based)                    7.routing   (JSON based) 
+
+
+8.development is easy                           8.complicated
+
+
+
+
+
+
+
+Angular Team has given   "@angular/cli"  tool
+to make Angular development easy. 
+
+
+To install Angular CLI tool
+
+Step 1
+======
+Install Node JS
+
+set path=C:\node-v8.9.4-win-x64;
+
+
+1)  node -v
+
+2)  npm -v 
+
+
+  Global installation
+ ================
+     npm install -g @angular/cli  <enter>  
+
+Local Installation
+==============
+
+      npm install  @angular/cli  <enter> 
+
+
+
+
+set path=C:\node-v8.9.4-win-x64;D:\angular5-cli\node_modules\.bin;
+
+
+
+C:\Users\PC5037971>node -v
+v7.10.0
+
+C:\Users\PC5037971>npm -v
+4.2.0
+
+C:\Users\PC5037971>ng -v
+    _                      _                 ____ _     ___
+   / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+  / ? \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+ / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+/_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
+               |___/
+@angular/cli: 1.0.0
+node: 7.10.0
+os: win32 x64
+
+C:\Users\PC5037971>
+
+
+1.To create a angular project
+
+         ng new <project-name>  <enter>
+
+   Ex.  ng new angular-app-day1 <enter>
+
+2.To run a angular project
+
+    go to your project in command prompt
+
+   c:\.... \angular-app-day1>npm start   <enter>   or ng serve 
+
+
+
+
+
+Angular Component is responsible for
+
+1.What to display
+2.How to display
+3.Where to display
+4.Where to inject
+
+
+
+template:'   ' If HTML code is <=3
+templateUrl:'app.com.html' If HTML code is >3
+
+
+Directives add functionaliites to HTML elements
+
+Attribute Directives   :Don't change HTML DOM Structure.
+Attribute directives deal with changing the look and behavior of the dom
+element.
+
+========================
+ngStyle
+style binding using class or inline
+<h2>Inline style mapping</h2>
+<span [ngStyle]="{color: 'green', border: '1px solid blue'}">My styling text</span>
+
+<h2>External style file mapping</h2>
+<span [ngClass]="{mystyle1:true}">My styling text</span><br>
+
+ngClass
+<span [class.mystyle1]="myvar2.value === 'yes'"> style can be applied if yes ...</span>
+ngSwitch
+ngModel -> for input elements only
+routerLink
+
+Structural Directives  : change HTML DOM Structure
+========================
+*ngIf
+
+*ngFor
+@Component({
+  selector: 'app-root',
+  //template: `<h1>My First AngularJS 2</h1>
+  //<h2> second line...</h2>
+  //`
+templateUrl: './app.component.html',
+//styleUrls: ['./app.component.css']
+})
+
+
+export class AppComponent {
+  mycolors=[
+    'red',
+    'green',
+    'yellow',
+    'orange'
+  ];
+}
+<ul>
+   <li *ngFor="let color of mycolors">
+     {{ color }}
+   </li>
+ </ul>
+
+Ex. 15 assignining a local variable and its usage
+<ul>
+    <li *ngFor="let color of mycolors; let i=index">
+      {{i}} : {{ color }}
+    </li>
+  </ul>
+
+Ex. 16:
+
+<h1>ngSwitch usage</h1>
+
+<div *ngFor="let color of mycolors">
+  <ul [ngSwitch]="color">
+     <li *ngSwitchCase="'green'">Green color </li>
+     <li *ngSwitchCase="'orange'">Orange color </li>
+     <li *ngSwitchDefault>No color </li>
+   </ul>
+</div>
+ 
+<h1>Fill the Form</h1>
+<input  [(ngModel)]="firstname" type='text'> <br />
+<input  [(ngModel)]="lastname" type='text'>  <br />
+<input  [(ngModel)]="fullname" type='text' (focus)="AddTwo()"> <br />
+
+<button (click)="AddTwo()">Click me</button>
+
+
+
+*ngSwitchCase
+*ngSwitchDefault
+
+Componenet Directives
+======================
+<app-root></app-root>
+<ng-templaete></ng-template>:The <ng-template> is an Angular element for rendering HTML. It is never displayed directly. In fact, before rendering the view, Angular replaces the <ng-template> and its contents with a comment.
+<router-outlet></router-outlet>
+Demo1:
+<div style = "text-align:center">
+
+   <h1>
+      Welcome to {{title}}.
+   </h1>
+</div>
+
+<div> Months :
+   <select (change) = "changemonths($event)" name = "month">
+      <option *ngFor = "let i of months">{{i}}</option>
+   </select>
+</div>
+<br/>
+
+<div>
+   <span *ngIf = "isavailable;then condition1 else condition2">Condition is valid.</span>
+   <ng-template #condition1>Condition is valid from template</ng-template>
+   <ng-template #condition2>Condition is invalid from template</ng-template>
+</div>
+<button (click) = "myClickFunction()">Click Me</button>
+
+.ts
+import { Component } from '@angular/core';
+
+@Component({
+   selector: 'app-root',
+   templateUrl: './app.component.html',
+   styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+   title = 'Angular 4 Project!';
+   //array of months.
+   months = ["January", "February", "March", "April",
+            "May", "June", "July", "August", "September",
+            "October", "November", "December"];
+   isavailable = false;
+   myClickFunction(event) {
+      this.isavailable = false;
+   }
+   changemonths(event) {
+      alert("Changed month from the Dropdown");
+      console.log();
+   }
+}
+
+Note:If you inspect the browser, you will see that you never get the span tag in the dom. The following example will help you understand the same.
+https://scotch.io/tutorials/angular-2-classes-with-ngclass-and-ngstyle
+
+
+https://www.concretepage.com/angular-2/angular-2-custom-attribute-directive-example
+
+ng generate directive highlight
+
+Custom Attribiute Directive => ElementRef,Renderer3
+ng g d myred
+============================
+https://www.concretepage.com/angular-2/angular-2-custom-attribute-directive-example
+<div   [fgColor]="''red"    [bgColor]="'cyan'">   Hello Students!!!   </div>
+
+Custom Structural Directive => TemplateRef,ViewcontainerRef
+============================
+https://www.concretepage.com/angular-2/angular-2-custom-structural-directive-example
+<div   *show="true">   Hello Students!!!   </div>
+<div   *hide="true">   Hello Students!!!   </div>
+
+
+
+
+
+
+
+ngModel="-------"
+[ngModel] -1 way data binding
+[(ngModel)] -2 way data binding
+
+
+
+ngClass
+=========
+<some-element [ngClass]="'first second'">...</some-element>
+
+<some-element [ngClass]="['first', 'second']">...</some-element>
+
+<some-element [ngClass]="{'first': true, 'second': true, 'third': false}">...</some-element>
+
+<some-element [ngClass]="stringExp|arrayExp|objExp">...</some-element>
+
+<some-element [ngClass]="{'class1 class2 class3' : true}">...</some-element>
+
+
+ngStyle
+======
+<some-element [ngStyle]="{'font-style': styleExp}">...</some-element>
+Demo1:
+.ts
+class
+
+{
+title="Angular Demo"
+}
+.css
+.c1
+{
+    border-color: gray;
+    border-style: dotted;
+}
+.c2
+{
+    text-align: center;
+    background: cyan
+}
+
+.html
+</p>
+<h1 [ngClass]="'c1 c2'">{{title}}</h1>
+or
+<h1 [ngClass]="['c1', 'c2']">{{title}}</h1>
+
+Demo2:
+<div [ngStyle]="{
+  'color': 'red',
+  'font-size': '17px',
+  'background-color': 'cyan'
+  }">
+welcome
+</div>
+
+<some-element [ngStyle]="{'max-width.px': widthExp}">...</some-element>
+
+<some-element [ngStyle]="objExp">...</some-element>
+
+
+ ngSwitch
+*ngSwitchCase
+*ngSwitchDefault
+*ngIf
+*ngFor
+
+<container-element [ngSwitch]="switch_expression">
+  <some-element *ngSwitchCase="match_expression_1">...</some-element>
+  <some-element *ngSwitchCase="match_expression_2">...</some-element>
+  <some-other-element *ngSwitchCase="match_expression_3">...</some-other-element>
+  <ng-container *ngSwitchCase="match_expression_3">
+    <!-- use a ng-container to group multiple root nodes -->
+    <inner-element></inner-element>
+    <inner-other-element></inner-other-element>
+  </ng-container>
+  <some-element *ngSwitchDefault>...</some-element>
+</container-element>
+
+
+string interpolation--{{ }}
+property binding[]
+event binding()
+two way data binding  [(ngModel)]
+
+
+
+unsername :trnguser1
+password  :Syntel123
+
+day2
+====
+
+ng g class <class-name>  <enter>
+ng g component <component-name>  <enter>
+ng g service  <service-name>  <eneter>
+ng g pipe <pipe-name>  <eneter>
+ng g  directive <directive-name>  <eneter>
+ng g module <module-name>  <enter>
+ng g module <module-name>   --routing <enter>
+
+
+
+
+Pipes(Filters)       =>sort ,format and search the data
+===========================================================
+String
+=========
+lowercase
+uppercase
+slice
+titlecase  (angular 4.0)
+
+array
+=====
+slice
+
+number
+=======
+number
+         salary:number:'9.2-3'
+           
+
+currency
+
+            salary|currency:'Rs'
+ 
+date
+=======
+date
+        dob:date:'shortDate'
+        dob:date:'mediumDate'
+        dob:date:'longDate'
+        dob:date:'fullDate'
+        dob:date:'dd-MMM-yyyy'
+welcome{{title|uppercase}}<br>
+ 
+{{name|titlecase}}<br>
+
+ {{name|titlecase|slice:2:4}}<br> <!--// 2--start index 4--end index-->
+ 
+{{salary|number:'9.4-6'}}<br><!--//4 min 6 max-->
+
+{{salary|currency:'INR'}}<br>
+
+{{salary|currency:'USD'}}<br>
+
+{{todayDate|date:'shortDate'}}
+<br>
+{{todayDate|date:'shortTime'}}<br>
+
+JS object
+=========
+json
+
+Observable 
+==========
+async  : 
+
+
+
+
+
+Custom Pipe
+=============
+gender
+orderBy
+
+
+To write a custom pipe we have to create class which implements PipeTransform i/f
+and we have to overide   transform method in it.
+
+
+
+             
+employees|orderBy ->sort employess by id in ascending order
+employees|orderBy:'id' ->sort employess by id in ascending order
+employees|orderBy:'name' ->sort employess by name in ascending order
+employees|orderBy:'name':true ->sort employess by name in descending order
+
+
+
+
+
+========================================================
+
+
+angular http
+
+
+Nested Components
+
+ParentComponent -> ChildComponent   ->@Input()
+ChildComponent ->  ParentComponent   ->@Output()
+
+
+
+
+angular custom directives
+angular form validattion
+
+Spring Boot Integration
+
+
+
+
+With a template driven form, 
+most of the work is done in the template; 
+and with the model driven form, most of the work is done in the component class.
+
+Form Validation
+===============
+1.Template Driven Forms Features
+
+Easy to use
+Suitable for simple scenarios and fails for complex scenarios
+Similar to AngularJS
+Two way data binding(using [(NgModel)] syntax)
+Minimal component code
+Automatic track of the form and its data(handled by Angular)
+Unit testing is another challenge
+
+2/Reactive Forms or Model driven Features
+
+More flexible, but needs a lot of practice
+Handles any complex scenarios
+No data binding is done (immutable data model preferred by most developers)
+More component code and less HTML markup
+Reactive transformations can be made possible such as
+Handling a event based on a debounce time
+Handling events when the components are distinct until changed
+Adding elements dynamically
+Easier unit testing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1   colorIt>Hello </h1>
+
+@Directive()
+class A{
+
+}
+
+
+
+@Pipe()
+class A{
+
+}
+
+
+
+
+@NgModule
+class A{
+
+}
+
+
+
+
+@Component()
+class A
+{
+
+
+}
+
+
+@Injectable
+class A{
+
+}
+
+
+
+
+class Library{
+private List<Book> books;
+private List<Member> members;
+
+}
+
+
+
+
+angular6 Materila Referal site
+=================================
+
+
+https://code.tutsplus.com/tutorials/how-to-use-material-design-in-angular-6--cms-31671
+
+
+
+
+These schematics can easily be installed with the ng generate command as follows:
+
+ng generate @angular/material:material-table --name <component-name>: generates a component that displays data with a data table
+ng generate @angular/material:material-nav --name <component-name>: generates a component with a side navigation and a toolbar
+ng generate @angular/material:material-dashboard --name <component-name>: generates a component that contains a dynamic grid list of cards.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
